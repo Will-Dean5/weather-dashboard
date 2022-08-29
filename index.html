@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+    <title>Weather Dashboard</title>
+</head>
+
+<body>
+    <header class="jumbotron jumbotron-fluid m-0 p-2 bg-dark ">
+        <div class="container text-center text-white">
+            <h1>Weather Dashboard</h1>
+        </div>
+    </header>
+    <nav>
+
+    </nav>
+    <main class="container-fulid mx-0">
+
+        <section class="row">
+
+        </section>
+        <div class="row col-lg-3">
+            <h2>
+                search for a city
+            </h2>
+            <section class="pb-3">
+                <form id="searchForm">
+                    <div class="form">
+                        <input type="text" class="input1" id="citySearch">
+                    </div>
+                    <button id="search" type="submit" class="btn btn-primary mb-3 btn-block">Search</button>
+                    <div id="searchCities"></div>
+                </form>
+            </section>
+            <section id="weatherNow" class="col-lg-12 bg-success">
+
+            </section>
+            <section id="fiveDay" class="col-lg-12">
+
+            </section>
+
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <script src="./script.js"></script>
+</body>
+
+</html>
