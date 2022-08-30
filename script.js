@@ -1,11 +1,7 @@
 var appid = '692efab00ae66e9f48137e6ea4766fcd';
-
 var searchBtn = document.querySelector('#search');
-
 var searchForm = document.querySelector('#searchForm');
-
 var searchCities = document.querySelector('#searchCities');
-
 
 var toJSON = function (response) {
     return response.json();
@@ -13,7 +9,7 @@ var toJSON = function (response) {
 // function to create elements that will be appended to the page 
 var displayWeather = function (data, city) {
     console.log(data);
-
+    // currentWeather.innerHTML = null;
     var currentWeather = document.getElementById('weatherNow')
     var h2El = document.createElement('h2');
     var tempEl = document.createElement('p');
@@ -32,16 +28,19 @@ var displayWeather = function (data, city) {
     currentWeather.appendChild(uvEl);
 };
 // 
-var displayBtn = function(){
+var displayBtn = function () {
     var cities = JSON.parse(localStorage.getItem('cities')) || [];
-    for (var city of cities){
+    var showThree = cities.slice(cities.length - 3);
+    searchCities.innerHTML = null;
+    for (var city of showThree) {
         var buttonEl = document.createElement('button');
         buttonEl.textContent = city;
         buttonEl.className = "btn btn-success mb-3 btn-block";
         searchCities.appendChild(buttonEl);
 
     }
-}
+};
+
 var getOneCall = function (city) {
     var oneCall = `https://api.openweathermap.org/data/3.0/onecall?lat=${city.lat}&lon=${city.lon}&appid=${appid}&units=imperial&exclude=hourly,minutely`;
 
@@ -103,20 +102,37 @@ var displayForcast = function (data) {
         // imgEl.src = ""
     }
 };
-var handleSearch = function(event){
+var handleSearch = function (event) {
     event.preventDefault();
     var q = document.querySelector('#citySearch');
     var geoURL = `http://api.openweathermap.org/geo/1.0/direct?q=${q.value}&appid=${appid}`;
     fetch(geoURL)
-    .then(toJSON)
-    .then(getGEO);
-    
-}
+        .then(toJSON)
+        .then(getGEO);
+
+};
 // adds a click event to the search button element that searches for a certain city
-searchBtn.addEventListener('click', handleSearch) 
-    q = document.querySelector('#citySearch').value;
-    console.log(q);
-    localStorage.setItem('City', q);
+
+var handleCitySearch = function (event) {
+    event.preventDefault();
+    if (event.target.matches('button')){
+        var q = event.target.textContent;
+        var geoURL = `http://api.openweathermap.org/geo/1.0/direct?q=${q}&appid=${appid}`;
+        fetch(geoURL)
+        .then(toJSON)
+        .then(getGEO);
+    }
+};
+
+searchBtn.addEventListener('click', handleSearch)
+q = document.querySelector('#citySearch').value;
+console.log(q);
+localStorage.setItem('City', q);
+
+searchCities.addEventListener('click', handleCitySearch);
+
+
+displayBtn();
 
 
 
