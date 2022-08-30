@@ -105,7 +105,7 @@ var displayForcast = function (data) {
 var handleSearch = function (event) {
     event.preventDefault();
     var q = document.querySelector('#citySearch');
-    var geoURL = `http://api.openweathermap.org/geo/1.0/direct?q=${q.value}&appid=${appid}`;
+    var geoURL = `https://api.openweathermap.org/geo/1.0/direct?q=${q.value}&appid=${appid}`;
     fetch(geoURL)
         .then(toJSON)
         .then(getGEO);
@@ -117,7 +117,7 @@ var handleCitySearch = function (event) {
     event.preventDefault();
     if (event.target.matches('button')){
         var q = event.target.textContent;
-        var geoURL = `http://api.openweathermap.org/geo/1.0/direct?q=${q}&appid=${appid}`;
+        var geoURL = `https://api.openweathermap.org/geo/1.0/direct?q=${q}&appid=${appid}`;
         fetch(geoURL)
         .then(toJSON)
         .then(getGEO);
